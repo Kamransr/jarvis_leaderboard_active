@@ -5,7 +5,7 @@
 set -euo pipefail
 
 PACKAGE_REPO="https://github.com/AcuVizionAI/V7_COREPP_exfoliation.git"
-PACKAGE_COMMIT="8060752db7075bf351170401d49cdc6f8a7286d6"
+PACKAGE_COMMIT="9f2e80d162e8f0681d04bfe287c69e1f450b1ac9"
 OUTPUT_NAME="AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test-mae.csv"
 SUBMITTED_SHA256="fb6300aefa036fa7c57a603dcb3613aa8d6409be3aa9cbb088c81f6feda59205"
 declare -A ASSET_SHA256=(
@@ -59,12 +59,9 @@ SUBMITTED="$HERE/$OUTPUT_NAME.zip"
 [ "$(sha256_of "$SUBMITTED")" = "$SUBMITTED_SHA256" ] || fail "Submitted ZIP checksum mismatch"
 "$PYTHON_BIN" -c 'import sys; assert sys.version_info[:2] == (3, 10), "Use Python 3.10, or set PYTHON_BIN to its executable."'
 
-if [ -n "${V7_WORK_DIR:-}" ]; then
-  mkdir -p "$V7_WORK_DIR"
-  WORK="$(cd -- "$V7_WORK_DIR" && pwd)"
-else
-  WORK="$(mktemp -d "${TMPDIR:-/tmp}/v7-corepp-exfoliation.XXXXXX")"
-fi
+WORK_BASE="${V7_WORK_DIR:-$HERE/.v7_work}"
+mkdir -p "$WORK_BASE"
+WORK="$(cd -- "$WORK_BASE" && pwd)"
 RUN="$(mktemp -d "$WORK/replay.XXXXXX")"
 PKG="$RUN/package"
 OUT="$RUN/predictions"
