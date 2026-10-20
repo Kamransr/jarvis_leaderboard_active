@@ -5,7 +5,7 @@
 set -euo pipefail
 
 PACKAGE_REPO="https://github.com/AcuVizionAI/V7_COREPP_exfoliation.git"
-PACKAGE_COMMIT="9f2e80d162e8f0681d04bfe287c69e1f450b1ac9"
+PACKAGE_COMMIT="f676749b857ed03d76a91ba1469a4fae1c9c05f0"
 OUTPUT_NAME="AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test-mae.csv"
 SUBMITTED_SHA256="fb6300aefa036fa7c57a603dcb3613aa8d6409be3aa9cbb088c81f6feda59205"
 declare -A ASSET_SHA256=(
